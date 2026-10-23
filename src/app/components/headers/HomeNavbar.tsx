@@ -1,29 +1,24 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import Basket from "./Basket";
 
-export function HomeNavbar() {
+export default function HomeNavbar() {
     const authMember = null;
     return (
         <div className="home-navbar">
-            <Container sx={{mt:"55px", height: "642px"}}>
+            <Container className="navbar-container">
                 <Stack 
-                 sx={{ height: "50px" }}
-                 flexDirection={"row"}
-                 justifyContent={"space-between"}
-                 alignItems={"center"}
+                 className="menu"
                 >
                     <Box>
                         <NavLink to="/">
                             <img 
-                            style={{ width: "125px", height: "30px"}} 
+                            className="brand-logo" 
                             src="/icons/burak.svg"/>
                         </NavLink>
                     </Box>
                     <Stack 
-                    flexDirection={"row"}
-                    justifyContent={"space-between"}
-                    minWidth={"700px"}
-                    alignItems={"center"}
+                    className="links"
                     >
                         <Box className="hover-line">
                             <NavLink to="/" activeClassName={"underline"}>Home</NavLink>
@@ -44,19 +39,41 @@ export function HomeNavbar() {
                          <Box className="hover-line">
                             <NavLink to="/help" activeClassName={"underline"}>Help</NavLink>
                         </Box>
-                        {/* Basket */}
+                        <Basket />
 
                         {!authMember ? (
                             <Box>
-                                <Button variant="contained" sx={{background: "#3776CC", color: "#f8f8ff"}}>Login</Button>
+                                <Button variant="contained" className="login-button">Login</Button>
                             </Box>
                         ) : (
-                            <img />
+                            <img className="user-avatar"
+                            src={"/icons/default-user.svg"}
+                            aria-haspopup={"true"}
+                            />
                             )}
                     </Stack>
                       
                 </Stack>
-                <Stack>DETAIL</Stack>
+                <Stack className="header-frame">
+                    <Stack className="detail">
+                        <Box className="head-main-txt">
+                            World's Most Delicious Cousine
+                        </Box>
+                        <Box className="wel-txt">
+                            The Choice, not just a choice
+                        </Box>
+                        <Box className="service-txt">24 hours service</Box>
+                        <Box className="signup">
+                            {!authMember ? (
+                                <Button variant="contained" className="signup-button">
+                                    SIGN UP
+                                </Button>) : null}
+                        </Box>
+                    </Stack>
+                    <Stack className="logo-frame">
+                        <div className="logo-img"></div>
+                    </Stack>
+                </Stack>
             </Container>
         </div>
     );
