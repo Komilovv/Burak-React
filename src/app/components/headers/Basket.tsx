@@ -95,7 +95,7 @@ export default function Basket() {
             </Box>
           </Box>
           <Box className={"basket-order"}>
-            <span className={"price"}>Total: $100 (98 +2)</span>
+            <span className={"price"}>Total: $10 (98 +2)</span>
             <Button startIcon={<ShoppingCartIcon />} variant={"contained"}>
               Order
             </Button>

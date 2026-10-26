@@ -7,9 +7,7 @@ export default function OtherNavbar() {
     return (
          <div className="other-navbar">
             <Container className="navbar-container">
-                <Stack 
-                 className="menu"
-                >
+                <Stack className="menu">
                     <Box>
                         <NavLink to="/">
                             <img 
@@ -17,9 +15,7 @@ export default function OtherNavbar() {
                             src="/icons/burak.svg"/>
                         </NavLink>
                     </Box>
-                    <Stack 
-                    className="links"
-                    >
+                    <Stack className="links">
                         <Box className="hover-line">
                             <NavLink to="/">Home</NavLink>
                         </Box>
