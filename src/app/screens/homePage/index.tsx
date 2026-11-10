@@ -18,4 +18,4 @@ export default function HomePage() {
       <ActiveUsers/>
       <Events/>
     </div>);
-}  
+}    
