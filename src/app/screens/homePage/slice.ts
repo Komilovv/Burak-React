@@ -12,7 +12,7 @@ const homePageSlice = createSlice({
     initialState,
     reducers: {
         setPopularDishes: (state, action) => {
-            state.popularDishes = action.payload;
+            state.popularDishes = action.payload; // state. -> this. kabi)
         },
         setNewDishes: (state, action) => {
             state.newDishes = action.payload;
