@@ -8,7 +8,7 @@ import "../../../css/products.css";
 export default function ProductsPage() {
   const products = useRouteMatch();
   
-  return(
+  return(  
     <div className='products-page'>
       <Switch>
         <Route path={`${products.path}/:productId`}>
@@ -19,4 +19,4 @@ export default function ProductsPage() {
         </Route>
       </Switch>
     </div>)
-}
+}  

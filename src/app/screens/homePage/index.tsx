@@ -57,7 +57,8 @@ export default function HomePage() {
         .then((data) => setTopUsers(data))
         .catch((err) => console.log(err));
 
-  }, []);
+  }, []); // array bo'sh bo'lsa database dan birmarta ma'lumot oladi. Agar biron qiymat bersak,
+  // qachonki o'sha qiymat o'zgarganda yana DB dan data olib keladi. Yani Intercation process!
 
   return (
     <div className="homepage">
