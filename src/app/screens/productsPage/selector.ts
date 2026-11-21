@@ -16,4 +16,4 @@ export const retrieveChosenProduct = createSelector(
 export const retrieveProducts = createSelector(
     selectProductsPage,
     (ProductsPage) => ProductsPage.products
-); 
+);                     

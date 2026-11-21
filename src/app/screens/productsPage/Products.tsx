@@ -18,6 +18,7 @@ import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enam";
 import { serverApi } from "../../../lib/config";
 import { useHistory } from "react-router-dom";
+import { CartItem } from "../../../lib/types/search";
 
 
 /** REDUX SLICE & SELECTOR */
@@ -28,8 +29,12 @@ const productsRetriever = createSelector(retrieveProducts, (products) => ({
     products,
 }));
 
+interface ProductsProps {
+  onAdd: (item: CartItem) => void;
+}
 
-export default function Products() {
+export default function Products(props: ProductsProps) {
+    const {onAdd} = props;
     const { setProducts } = actionDispatch(useDispatch());
     const { products } = useSelector(productsRetriever);
     const [ productSearch, setProductSearch ] = useState<ProductInquiry>({
@@ -46,24 +51,23 @@ export default function Products() {
         const product = new ProductService();
         product
             .getProducts(productSearch)
-            .then((data) => setProducts(data))
+            .then((data) => setProducts(data)) // call
             .catch((err) => alert(`Error: ${err}`))
     }, [productSearch]); // productSearch ni qiymati o'zgarganda useEffect ni qayta ishga tushirib beradi
 
     useEffect(() => {
         if(searchText === "") {
             productSearch.search = "";
-            setProductSearch({ ...productSearch });
+            setProductSearch({ ...productSearch }); // ... is spread operator
         }
     }, [searchText]);
 
-    /** Handlers **/
+    /** Handlers funksiyalar**/
     const searchCollectionHandler = (collection: ProductCollection) => {
         productSearch.page = 1;
         productSearch.productCollection = collection;
-        setProductSearch({ ...productSearch}); // Is there smone who got it?
+        setProductSearch({ ...productSearch}); // bu ... nuqtalar faqat  o'zgarishi kerak bo'lgan qiymatini kiritish kifoya qilishini taminlaydi.
     };
-
     const searchOrderHandler = (order: string) => {
         productSearch.page = 1;
         productSearch.order = order;
@@ -237,7 +241,16 @@ export default function Products() {
                                     sx={{ backgroundImage: `url(${imagePath})` }}
                                 >
                                     <div className={"product-sale"}>{sizeVolume}</div>
-                                    <Button className={"shop-btn"}>
+                                    <Button className={"shop-btn"} onClick={(e) => {
+                                        onAdd({
+                                            _id: product._id,
+                                            quantity: 1,
+                                            name: product.productName,
+                                            price: product.productPrice,
+                                            image: product.productImages[0]
+                                        });
+                                        e.stopPropagation();
+                                    }}>
                                     <img
                                         src={"/icons/shopping-cart.svg"}
                                         style={{ display: "flex" }}
