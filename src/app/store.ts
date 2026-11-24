@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import HomePageReducer from './screens/homePage/slice';
 import reduxLogger from "redux-logger";
 import ProductsPageReducer from './screens/productsPage/slice';
+import OrdersPageReducer from './screens/ordersPage/slice';
 
 // Redux store is created once when your application starts, 
 // not every time a page loads.
@@ -11,7 +12,8 @@ export const store = configureStore({
     getDefaultMiddleware().concat(reduxLogger),
   reducer: {
     homePage: HomePageReducer, // Redux calls the reducer to get its initial state.
-    productsPage: ProductsPageReducer
+    productsPage: ProductsPageReducer,
+    ordersPage: OrdersPageReducer
   },
 });
 // the store is connected to your React application: <Provider store={store}>

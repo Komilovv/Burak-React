@@ -16,7 +16,9 @@ const root = createRoot(container);
 
 root.render(  
   <React.StrictMode>
+    /**Redux storage */
     <Provider store={store}>
+      /** Context storage */
       <ContextProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
