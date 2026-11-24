@@ -40,7 +40,7 @@ const ModalImg = styled.img`
 interface AuthenticationModalProps {
   signupOpen: boolean;
   loginOpen: boolean;
-  handleSignupClose: () => void;
+  handleSignupClose: () => void; 
   handleLoginClose: () => void;
 }
 
@@ -50,7 +50,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   const [memberNick, setMemberNick] = useState<string>("");
   const [memberPhone, setMemberPhone] = useState<string>("");
   const [memberPassword, setMemberPassword] = useState<string>("");
-  const { setAuthMember} = useGlobals();
+  const { setAuthMember} = useGlobals(); // maybe write authMember too
 
   /** HANDLERS **/
 
@@ -94,7 +94,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       handleSignupClose();
       sweetErrorHandling(err).then();
     }
-  }
+  }  
   const handleLoginRequest = async () => {
     try {
       const isFulfill = 
@@ -108,7 +108,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 
       const member = new MemberService();
       const result = await member.login(loginInput);
-
+      console.log("nima edi ", result)
       setAuthMember(result);
       handleLoginClose();
     } catch(err) {

@@ -1,4 +1,5 @@
 import { OrderStatus } from "../enums/order.enum";
+import { Product } from "./product";
 
 export interface OrderItem {
     _id: string;
@@ -20,6 +21,7 @@ export interface Order {
     updatedAt: Date;
     // From aggrigations
     orderItems: OrderItem[];
+    productData: Product[];
 }
 
 export interface OrderItemInput {
